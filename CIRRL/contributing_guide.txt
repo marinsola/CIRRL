@@ -1,0 +1,220 @@
+# Contributing to CIRRL
+
+Thank you for your interest in contributing to CIRRL! This document provides guidelines and instructions for contributing.
+
+## Table of Contents
+
+- [Code of Conduct](#code-of-conduct)
+- [Getting Started](#getting-started)
+- [Development Workflow](#development-workflow)
+- [Coding Standards](#coding-standards)
+- [Testing](#testing)
+- [Documentation](#documentation)
+- [Pull Request Process](#pull-request-process)
+- [Issue Guidelines](#issue-guidelines)
+
+## Code of Conduct
+
+### Our Pledge
+
+We are committed to providing a welcoming and inclusive environment for all contributors, regardless of experience level, background, or identity.
+
+### Expected Behavior
+
+- Be respectful and considerate
+- Welcome newcomers and help them get started
+- Focus on constructive feedback
+- Accept criticism gracefully
+
+### Unacceptable Behavior
+
+- Harassment or discriminatory language
+- Personal attacks
+- Publishing others' private information
+- Other conduct that would be inappropriate in a professional setting
+
+## Getting Started
+
+### Prerequisites
+
+- Python 3.8 or higher
+- Git
+- Basic understanding of PyTorch
+- Familiarity with causal inference concepts (helpful but not required)
+
+### Setting Up Your Development Environment
+
+1. **Fork and clone the repository:**
+   ```bash
+   git clone https://github.com/yourusername/CIRRL.git
+   cd CIRRL
+   ```
+
+2. **Create a virtual environment:**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. **Install development dependencies:**
+   ```bash
+   make install-dev
+   # or
+   pip install -e ".[dev]"
+   ```
+
+4. **Verify installation:**
+   ```bash
+   make test
+   ```
+
+## Development Workflow
+
+### 1. Create a Branch
+
+Always create a new branch for your work:
+
+```bash
+git checkout -b feature/your-feature-name
+# or
+git checkout -b fix/bug-description
+```
+
+Branch naming conventions:
+- `feature/` - New features
+- `fix/` - Bug fixes
+- `docs/` - Documentation improvements
+- `refactor/` - Code refactoring
+- `test/` - Test additions or modifications
+
+### 2. Make Your Changes
+
+- Write clear, readable code
+- Follow the coding standards (see below)
+- Add tests for new functionality
+- Update documentation as needed
+
+### 3. Test Your Changes
+
+```bash
+# Run all tests
+make test
+
+# Run with coverage
+make test-cov
+
+# Run specific test file
+pytest tests/test_drig.py -v
+```
+
+### 4. Format and Lint
+
+```bash
+# Format code
+make format
+
+# Check code style
+make lint
+
+# Type checking
+make type-check
+
+# Run all checks
+make all
+```
+
+### 5. Commit Your Changes
+
+Write clear, descriptive commit messages:
+
+```bash
+git add .
+git commit -m "Add feature: description of what you did"
+```
+
+Good commit message examples:
+- `Add batch DRIG estimator for large datasets`
+- `Fix memory leak in DPA training loop`
+- `Update documentation for DRIG estimators`
+- `Refactor data loading utilities`
+
+### 6. Push and Create Pull Request
+
+```bash
+git push origin feature/your-feature-name
+```
+
+Then create a pull request on GitHub.
+
+## Coding Standards
+
+### Python Style Guide
+
+We follow [PEP 8](https://www.python.org/dev/peps/pep-0008/) with some modifications:
+
+- **Line length**: 100 characters (not 79)
+- **Indentation**: 4 spaces
+- **Quotes**: Use double quotes for strings
+- **Naming conventions**:
+  - Classes: `PascalCase`
+  - Functions/methods: `snake_case`
+  - Constants: `UPPER_SNAKE_CASE`
+  - Private methods: `_leading_underscore`
+
+### Code Organization
+
+```python
+"""
+Module docstring explaining purpose.
+
+Detailed description if needed.
+"""
+
+import standard_library
+import third_party_library
+
+from cirrl.module import function
+
+# Constants
+DEFAULT_VALUE = 100
+
+# Classes and functions
+class MyClass:
+    """Class docstring."""
+    
+    def __init__(self):
+        """Initialize."""
+        pass
+    
+    def public_method(self):
+        """Public method docstring."""
+        pass
+    
+    def _private_method(self):
+        """Private method docstring."""
+        pass
+```
+
+### Docstring Format
+
+Use Google-style docstrings:
+
+```python
+def function_name(arg1: int, arg2: str, optional: bool = False) -> str:
+    """
+    Brief description of function.
+    
+    Longer description if needed. Can span multiple lines
+    and include details about the algorithm, usage, etc.
+    
+    Args:
+        arg1: Description of arg1
+        arg2: Description of arg2
+        optional: Description of optional parameter (default: False)
+        
+    Returns:
+        Description of return value
+        
+    Raises:
+        ValueError: When invalid input is provided
+        
