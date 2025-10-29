@@ -269,7 +269,6 @@ def eval_mse(dpa, X, Y, n_in_ref, E, X_test, Y_test,
     Returns:
         Tuple of (train_mse, test_mse)
     """
-    from cirrl.estimators.drig import drig_est
     
     dpa.model.eval()
     
